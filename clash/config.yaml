@@ -753,14 +753,11 @@ rules:
 
   # 流媒体
 
-  # netflix
-  - USER-AGENT,Argo*,Proxy
+  # Netflix
   - DOMAIN-KEYWORD,netflix,Proxy
   - DOMAIN-KEYWORD,nfl,Proxy
 
-  # youtube
-  - USER-AGENT,com.google.ios.youtube*,Proxy
-  - USER-AGENT,YouTube*,Proxy
+  # YouTube
   - DOMAIN-SUFFIX,googlevideo.com,Proxy
   - DOMAIN-SUFFIX,youtube.com,Proxy
   - DOMAIN,youtubei.googleapis.com,Proxy
