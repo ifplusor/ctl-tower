@@ -1,0 +1,5 @@
+payload:
+  - USER-AGENT,Argo*
+
+  - DOMAIN-KEYWORD,netflix
+  - DOMAIN-KEYWORD,nflx
