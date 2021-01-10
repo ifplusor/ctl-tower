@@ -254,20 +254,6 @@ proxy-groups:
       - load-balance
       - fallback-auto
 
-rule-providers:
-  netflix:
-    type: file
-    behavior: classical
-    path: ./rule/stream/netflix.yaml
-    url: https://raw.githubusercontent.com/ifplusor/ctl-tower/master/rule/stream/netflix.yaml
-    interval: 86400
-  youtube:
-    type: file
-    behavior: classical
-    path: ./rule/stream/youtube.yaml
-    url: https://raw.githubusercontent.com/ifplusor/ctl-tower/master/rule/stream/youtube.yaml
-    interval: 86400
-
 rules:
   # 自定义规则
   ## 您可以在此处插入您补充的自定义规则（请注意保持缩进）
@@ -766,8 +752,19 @@ rules:
   - IP-CIDR6,2001:b28:f23f::/48,Proxy
 
   # 流媒体
-  - RULE-SET,netflix,Proxy
-  - RULE-SET,youtube,Proxy
+
+  # netflix
+  - USER-AGENT,Argo*,Proxy
+  - DOMAIN-KEYWORD,netflix,Proxy
+  - DOMAIN-KEYWORD,nfl,Proxy
+
+  # youtube
+  - USER-AGENT,com.google.ios.youtube*,Proxy
+  - USER-AGENT,YouTube*,Proxy
+  - DOMAIN-SUFFIX,googlevideo.com,Proxy
+  - DOMAIN-SUFFIX,youtube.com,Proxy
+  - DOMAIN,youtubei.googleapis.com,Proxy
+  - PROCESS-NAME,YT Musi,Proxy
 
   # LAN
   - DOMAIN,injections.adguard.org,DIRECT
