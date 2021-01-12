@@ -259,6 +259,17 @@ rules:
   ## 您可以在此处插入您补充的自定义规则（请注意保持缩进）
 
   # Apple
+
+  # Apple News
+  - PROCESS-NAME,News,Proxy
+  - DOMAIN,gateway.icloud.com,Proxy
+  - DOMAIN,gspe1-ssl.ls.apple.com,Proxy
+  - DOMAIN-SUFFIX,apple.news,Proxy
+  - DOMAIN,apple.comscoreresearch.com,Proxy
+  - DOMAIN,news-client.apple.com,Proxy
+  - DOMAIN,news-events.apple.com,Proxy
+  - DOMAIN,news-edge.apple.com,Proxy
+
   - DOMAIN,safebrowsing.urlsec.qq.com,DIRECT # 如果您并不信任此服务提供商或防止其下载消耗过多带宽资源，可以进入 Safari 设置，关闭 Fraudulent Website Warning 功能，并使用 REJECT 策略。
   - DOMAIN,safebrowsing.googleapis.com,DIRECT # 如果您并不信任此服务提供商或防止其下载消耗过多带宽资源，可以进入 Safari 设置，关闭 Fraudulent Website Warning 功能，并使用 REJECT 策略。
   - DOMAIN,developer.apple.com,Proxy
