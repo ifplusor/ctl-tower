@@ -199,6 +199,8 @@ dns:
     #   - '+.facebook.com'
     #   - '+.youtube.com'
 
+proxies:
+
 proxy-providers:
   backyard:
     type: file
@@ -213,7 +215,7 @@ proxy-providers:
     health-check:
       enable: true
       url: http://www.gstatic.com/generate_204
-      interval: 30
+      interval: 300
 
 proxy-groups:
   # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
