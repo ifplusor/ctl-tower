@@ -1,23 +1,27 @@
 payload:
-  - DOMAIN,safebrowsing.urlsec.qq.com
-  - DOMAIN,safebrowsing.googleapis.com
-  - DOMAIN-SUFFIX,mzstatic.com
-  - DOMAIN-SUFFIX,itunes.apple.com
-  - DOMAIN-SUFFIX,icloud.com
-  - DOMAIN-SUFFIX,icloud-content.com
-  - DOMAIN-SUFFIX,me.com
-  - DOMAIN-SUFFIX,aaplimg.com
-  - DOMAIN-SUFFIX,cdn20.com
-  - DOMAIN-SUFFIX,cdn-apple.com
-  - DOMAIN-SUFFIX,akadns.net
-  - DOMAIN-SUFFIX,akamaiedge.net
-  - DOMAIN-SUFFIX,edgekey.net
-  - DOMAIN-SUFFIX,mwcloudcdn.com
-  - DOMAIN-SUFFIX,mwcname.com
-  - DOMAIN-SUFFIX,apple.com
-  - DOMAIN-SUFFIX,apple-cloudkit.com
-  - DOMAIN-SUFFIX,apple-mapkit.com
-  # - USER-AGENT,com.apple.appstored*
-  # - USER-AGENT,AppStore*
-  # - USER-AGENT,cloudd*
-  # - AND,((NOT,((USER-AGENT,*com.apple.WebKit*))),(USER-AGENT,*com.apple.*))
+  # Spotlight
+  - DOMAIN,api.smoot.apple.com
+  - DOMAIN,api.smoot.apple.cn
+  # Hotspot captive
+  - DOMAIN,captive.apple.com
+  # Apple Pay
+  - DOMAIN,smp-device-content.apple.com
+  - DOMAIN-KEYWORD,smp-device
+  #- USER-AGENT,passd*
+  #- USER-AGENT,Wallet*
+  # locationd
+  - DOMAIN,gs-loc.apple.com
+  - DOMAIN-SUFFIX,ls.apple.com.akadns.net
+  - DOMAIN-SUFFIX,ls.apple.com.edgesuite.net
+  # Reserve
+  - DOMAIN,reserve-prime.apple.com
+  # Push
+  - DOMAIN-KEYWORD,push-apple.com.akadns.net
+  - DOMAIN-SUFFIX,push.apple.com.akadns.net
+  - DOMAIN-SUFFIX,push.apple.com
+  # GeoServices.framework
+  - DOMAIN-SUFFIX,ls.apple.com
+  # Asset Cache Locator Service
+  - DOMAIN-SUFFIX,lcdn-locator.apple.com
+  # Caching Server Registration
+  - DOMAIN-SUFFIX,lcdn-registration.apple.com
