@@ -1,5 +1,5 @@
 payload: 
-  - PROCESS-NAME,News
+  #- PROCESS-NAME,News
   #- USER-AGENT,AppleNews*
   - DOMAIN,gateway.icloud.com
   - DOMAIN-SUFFIX,ls.apple.com

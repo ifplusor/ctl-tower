@@ -5,7 +5,7 @@ payload:
   # Mac App Store
   - DOMAIN,osxapps.itunes.apple.com
   - DOMAIN,oscdn.apple.com
-  - PROCESS-NAME,storedownloadd
+  #- PROCESS-NAME,storedownloadd
   # Update
   - DOMAIN,supportdownload.apple.com
   # Update

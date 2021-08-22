@@ -6,4 +6,4 @@ payload:
   - DOMAIN,youtubei.googleapis.com
 
   # YT-Music, An unofficial but fancy client of YouTube Music for Mac
-  - PROCESS-NAME,YT Music
+  #- PROCESS-NAME,YT Music
