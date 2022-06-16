@@ -88,15 +88,13 @@ dns:
     # 以下域名列表参考自 vernesong/OpenClash 项目，并由 Hackl0us 整理补充
     # === LAN ===
     - "*.lan"
-    # === Linksys Wireless Router ===
-    - "*.linksys.com"
-    - "*.linksyssmartwifi.com"
-    # === Apple Software Update Service ===
-    - "swscan.apple.com"
-    - "mesu.apple.com"
-    # === Windows 10 Connnect Detection ===
-    - "*.msftconnecttest.com"
-    - "*.msftncsi.com"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
     # === NTP Service ===
     - "time.*.com"
     - "time.*.gov"
@@ -111,7 +109,6 @@ dns:
     - "time6.*.com"
     - "time7.*.com"
 
-    - "ntp.*.com"
     - "ntp.*.com"
     - "ntp1.*.com"
     - "ntp2.*.com"
@@ -128,7 +125,8 @@ dns:
     - "time1.cloud.tencent.com"
     # === Music Service ===
     ## NetEase
-    - "+.music.163.com"
+    - "music.163.com"
+    - "*.music.163.com"
     - "*.126.net"
     ## Baidu
     - "musicapi.taihe.com"
@@ -143,14 +141,24 @@ dns:
     - "api.joox.com"
     - "joox.com"
     ## QQ
-    - "+.y.qq.com"
-    - "+.music.tc.qq.com"
+    - "y.qq.com"
+    - "*.y.qq.com"
+    - "streamoc.music.tc.qq.com"
+    - "mobileoc.music.tc.qq.com"
+    - "isure.stream.qqmusic.qq.com"
+    - "dl.stream.qqmusic.qq.com"
     - "aqqmusic.tc.qq.com"
-    - "+.stream.qqmusic.qq.com"
+    - "amobile.music.tc.qq.com"
     ## Xiami
     - "*.xiami.com"
     ## Migu
-    - "+.music.migu.cn"
+    - "music.migu.cn"
+    - "*.music.migu.cn"
+    # === Video Service ===
+    ## Bilibili
+    - "*.mcdn.bilivideo.cn"
+    ## Netflix
+    - "+.nflxvideo.net"
     # === Game Service ===
     ## Nintendo Switch
     - "+.srv.nintendo.net"
@@ -158,15 +166,52 @@ dns:
     - "+.stun.playstation.net"
     ## Microsoft Xbox
     - "xbox.*.microsoft.com"
-    - "+.xboxlive.com"
+    - "xnotify.xboxlive.com"
+    ## Blizzard
+    - "+.battlenet.com.cn"
+    - "+.wotgame.cn"
+    - "+.wggames.cn"
+    - "+.wowsgame.cn"
+    - "+.wargaming.net"
+    ## Square Enix
+    - "*.square-enix.com"
+    - "*.finalfantasyxiv.com"
+    - "*.ffxiv.com"
+    # === Apple Software Update Service ===
+    - "mesu.apple.com"
+    - "swscan.apple.com"
+    - "swquery.apple.com"
+    - "swdownload.apple.com"
+    - "swcdn.apple.com"
+    - "swdist.apple.com"
+    # === Windows 10 Connnect Detection ===
+    - "msftconnecttest.com"
+    - "*.msftconnecttest.com"
+    - "msftncsi.com"
+    - "*.msftncsi.com"
+    # === Router ===
+    ## Asus
+    - "*.router.asus.com"
+    ## Linksys
+    - "*.linksys.com"
+    - "*.linksyssmartwifi.com"
+    ## Belkin
+    - "heartbeat.belkin.com"
     # === Other ===
+    ## Google
+    - "lens.l.google.com"
+    - "stun.l.google.com"
     ## QQ Quick Login
     - "localhost.ptlogin2.qq.com"
+    - "localhost.sec.qq.com"
     ## Golang
     - "proxy.golang.org"
     ## STUN Server
     - "stun.*.*"
     - "stun.*.*.*"
+    - "+.stun.*.*"
+    - "+.stun.*.*.*"
+    - "+.stun.*.*.*.*"
 
   # 支持 UDP / TCP / DoT / DoH 协议的 DNS 服务，可以指明具体的连接端口号。
   # 所有 DNS 请求将会直接发送到服务器，不经过任何代理。
@@ -193,12 +238,28 @@ dns:
   fallback-filter:
     geoip: false
     ipcidr:
+      - 0.0.0.0/8
+      - 10.0.0.0/8
+      - 100.64.0.0/10
+      - 127.0.0.0/8
+      - 169.254.0.0/16
+      - 172.16.0.0/12
+      - 192.0.0.0/24
+      - 192.0.2.0/24
+      - 192.88.99.0/24
+      - 192.168.0.0/16
+      - 198.18.0.0/15
+      - 198.51.100.0/24
+      - 203.0.113.0/24
+      - 224.0.0.0/4
       - 240.0.0.0/4
-      - 0.0.0.0/32
-    # domain:
-    #   - '+.google.com'
-    #   - '+.facebook.com'
-    #   - '+.youtube.com'
+      - 255.255.255.255/32
+    domain:
+      - "+.google.com"
+      - "+.facebook.com"
+      - "+.youtube.com"
+      - "+.githubusercontent.com"
+      - "+.googlevideo.com"
 
 proxies:
 
