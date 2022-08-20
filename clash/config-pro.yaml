@@ -427,9 +427,6 @@ rules:
   - DOMAIN,safebrowsing.urlsec.qq.com,DIRECT
   - DOMAIN,safebrowsing.googleapis.com,DIRECT
 
-  # 国内网站
-  - RULE-SET,cn,DIRECT
-
   # 抗 DNS 污染
   - RULE-SET,anti-pollution,Proxy
 
@@ -444,6 +441,9 @@ rules:
   - RULE-SET,netflix,Proxy
   - RULE-SET,telegram,Proxy
   - RULE-SET,apple-news,Proxy
+
+  # 国内网站
+  - RULE-SET,cn,DIRECT
 
   # LAN
   - RULE-SET,lan,DIRECT
