@@ -126,6 +126,8 @@ dns:
     - "+.pool.ntp.org"
 
     - "time1.cloud.tencent.com"
+    # === Router ===
+    - router.asus.com
     # === Music Service ===
     ## NetEase
     - "music.163.com"
