@@ -414,6 +414,12 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/ifplusor/ctl-tower@main/clash/rule/social/telegram.yaml"
     interval: 3600
     path: ./rule/social/telegram.yaml
+  anime-trackers:
+    behavior: domain
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/Pioooooo/clash-rules-bt@main/anime_trackers.txt"
+    interval: 86400
+    path: ./rule/anime-trackers.yaml
 
 rules:
   # 自定义规则
@@ -434,6 +440,9 @@ rules:
 
   # 常见广告域名屏蔽
   - RULE-SET,ad-keyword,REJECT
+
+  # BitTorrent Trackers
+  - RULE-SET,anime-trackers,DIRECT
 
   # 国外网站
   - RULE-SET,foreign,Proxy
