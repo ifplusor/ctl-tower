@@ -323,11 +323,17 @@ proxy-groups:
       - load-balance
       - fallback-auto
 
-  - name: AppleApiProxy
+  - name: AppleAPI
     type: select
     proxies:
       - Proxy
       - DIRECT
+
+  - name: MySite
+    type: select
+    proxies:
+      - DIRECT
+      - Proxy
 
 rule-providers:
   lan:
@@ -336,6 +342,12 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/ifplusor/ctl-tower@main/clash/rule/lan.yaml"
     interval: 3600
     path: ./rule/lan.yaml
+  direct:
+    behavior: "classical"
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/ifplusor/ctl-tower@main/clash/rule/direct.yaml"
+    interval: 3600
+    path: ./rule/direct.yaml
   cn:
     behavior: "classical"
     type: http
@@ -425,12 +437,18 @@ rules:
   # 自定义规则
   ## 您可以在此处插入您补充的自定义规则（请注意保持缩进）
 
+  # Direct
+  - RULE-SET,direct,DIRECT
+
+  # MySite
+  - DOMAIN-SUFFIX,ifplusor.win,MySite
+
   # Apple
-  - RULE-SET,apple-api,AppleApiProxy
+  - RULE-SET,apple-api,AppleAPI
   - RULE-SET,apple-global-cdn,DIRECT
   - RULE-SET,apple-noncn-cdn,Proxy
   - RULE-SET,apple-direct,DIRECT
-  - RULE-SET,apple-misc,AppleApiProxy
+  - RULE-SET,apple-misc,AppleAPI
   # - DOMAIN,e.crashlytics.com,REJECT //注释此选项有助于大多数App开发者分析崩溃信息；如果您拒绝一切崩溃数据统计、搜集，请取消 # 注释。
   - DOMAIN,safebrowsing.urlsec.qq.com,DIRECT
   - DOMAIN,safebrowsing.googleapis.com,DIRECT
