@@ -287,6 +287,7 @@ proxies:
 proxy-providers:
   backyard:
     type: file
+    url: ""
     path: ./proxy/ss/backyard.yaml
     health-check:
       enable: true
@@ -294,6 +295,7 @@ proxy-providers:
       interval: 300
   backup:
     type: file
+    url: ""
     path: ./proxy/ss/backup.yaml
     health-check:
       enable: true
@@ -303,6 +305,7 @@ proxy-providers:
 proxy-groups:
   # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
   - name: "auto"
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Auto.png
     type: url-test
     use:
       - backyard
@@ -330,6 +333,7 @@ proxy-groups:
   # select 用来允许用户手动选择 代理服务器 或 服务器组
   # 您也可以使用 RESTful API 去切换服务器，这种方式推荐在 GUI 中使用
   - name: Proxy
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Static.png
     type: select
     use:
       - backyard
@@ -342,8 +346,8 @@ proxy-groups:
   - name: AppleAPI
     type: select
     proxies:
-      - Proxy
       - DIRECT
+      - Proxy
 
   - name: MySite
     type: select
@@ -359,8 +363,7 @@ rule-providers:
     interval: 3600
     path: ./rule/lan.yaml
   direct:
-    behavior: "classical"
-    type: http
+    behavior: domain
     url: "https://cdn.jsdelivr.net/gh/ifplusor/ctl-tower@main/clash/rule/direct.yaml"
     interval: 3600
     path: ./rule/direct.yaml
