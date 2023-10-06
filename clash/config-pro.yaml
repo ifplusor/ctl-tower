@@ -364,6 +364,7 @@ rule-providers:
     path: ./rule/lan.yaml
   direct:
     behavior: domain
+    type: http
     url: "https://cdn.jsdelivr.net/gh/ifplusor/ctl-tower@main/clash/rule/direct.yaml"
     interval: 3600
     path: ./rule/direct.yaml
