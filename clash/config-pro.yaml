@@ -447,6 +447,12 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/ifplusor/ctl-tower@main/clash/rule/social/telegram.yaml"
     interval: 3600
     path: ./rule/social/telegram.yaml
+  steam:
+    behavior: "classical"
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/ifplusor/ctl-tower@main/clash/rule/game/steam.yaml"
+    interval: 3600
+    path: ./rule/game/steam.yaml
   anime-trackers:
     behavior: domain
     type: http
