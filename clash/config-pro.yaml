@@ -208,6 +208,8 @@ dns:
     # === Router ===
     ## Asus
     - "router.asus.com"
+    ## TP-Link
+    - "tplogin.cn"
     ## Linksys
     - "*.linksys.com"
     - "*.linksyssmartwifi.com"
@@ -279,9 +281,10 @@ dns:
       - "+.googlevideo.com"
 
   # 通过特定的名称服务器查找域名
-  # nameserver-policy:
-  #   'www.baidu.com': '114.114.114.114'
-  #   '+.internal.crop.com': '10.0.0.1'
+  nameserver-policy:
+    "+.local": system
+    "router.asus.com": system
+    "tplogin.cn": system
 
 proxies:
 
@@ -345,6 +348,12 @@ proxy-groups:
       - fallback-auto
 
   - name: AppleAPI
+    type: select
+    proxies:
+      - DIRECT
+      - Proxy
+
+  - name: SpeedTest
     type: select
     proxies:
       - DIRECT
@@ -459,12 +468,21 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/Pioooooo/clash-rules-bt@main/anime_trackers.txt"
     interval: 86400
     path: ./rule/anime-trackers.yaml
+  speedtest:
+    behavior: "classical"
+    type: http
+    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Speedtest/Speedtest.yaml"
+    interval: 3600
+    path: ./rule/speedtest.yaml
 
 # 自定义规则
 # 您可以在此处插入您补充的自定义规则（请注意保持缩进）
 rules:
   # Direct
   - RULE-SET,direct,DIRECT
+
+  # SpeedTest
+  - RULE-SET,speedtest,SpeedTest
 
   # MySite
   - DOMAIN-SUFFIX,ifplusor.win,MySite
@@ -495,6 +513,7 @@ rules:
   - RULE-SET,youtube,Proxy
   - RULE-SET,netflix,Proxy
   - RULE-SET,telegram,Proxy
+  - RULE-SET,steam,Proxy
   - RULE-SET,apple-news,Proxy
 
   # 国内网站
