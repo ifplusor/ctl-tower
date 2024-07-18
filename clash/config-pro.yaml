@@ -84,17 +84,75 @@ dns:
   enable: false
   listen: 0.0.0.0:53
   ipv6: true # 当为 false 时, AAAA 查询的响应将为空
+  # use-hosts: true # 查找 hosts 并返回 IP 记录
+  # search-domains: [local] # A/AAAA 记录的搜索域
+
+  # DNS query follows proxy rules
+  # follow-rule: false
 
   # 这些 名称服务器(nameservers) 用于解析下列 DNS 名称服务器主机名.
   # 仅指定 IP 地址
   default-nameserver:
     - 223.5.5.5
     - 114.114.114.114
+
+  # 支持 UDP、TCP、DoT、DoH. 您可以指定要连接的端口.
+  # 所有 DNS 查询都直接发送到名称服务器, 无需代理
+  # Clash 使用第一个收到的响应作为 DNS 查询的结果.
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+
+  # 通过特定的名称服务器查找域名
+  nameserver-policy:
+    "+.local": system
+    "router.asus.com": system
+    "tplogin.cn": system
+
+  # 当 `fallback` 存在时, DNS 服务器将向此部分中的服务器
+  # 与 `nameservers` 中的服务器发送并发请求
+  # 当 GEOIP 国家不是 `CN` 时, 将使用 fallback 服务器的响应
+  # fallback:
+  #   - https://dns.google/dns-query
+
+  # 如果使用 `nameservers` 解析的 IP 地址在下面指定的子网中,
+  # 则认为它们无效, 并使用 `fallback` 服务器的结果.
+  #
+  # 当 `fallback-filter.geoip` 为 true 且 IP 地址的 GEOIP 为 `CN` 时,
+  # 将使用 `nameservers` 服务器解析的 IP 地址.
+  #
+  # 如果 `fallback-filter.geoip` 为 false, 且不匹配 `fallback-filter.ipcidr`,
+  # 则始终使用 `nameservers` 服务器的结果
+  #
+  # 这是对抗 DNS 污染攻击的一种措施.
+  fallback-filter:
+    geoip: false
+    ipcidr:
+      - 0.0.0.0/8
+      - 10.0.0.0/8
+      - 100.64.0.0/10
+      - 127.0.0.0/8
+      - 169.254.0.0/16
+      - 172.16.0.0/12
+      - 192.0.0.0/24
+      - 192.0.2.0/24
+      - 192.88.99.0/24
+      - 192.168.0.0/16
+      - 198.18.0.0/15
+      - 198.51.100.0/24
+      - 203.0.113.0/24
+      - 224.0.0.0/4
+      - 240.0.0.0/4
+      - 255.255.255.255/32
+    domain:
+      - "+.google.com"
+      - "+.facebook.com"
+      - "+.youtube.com"
+      - "+.githubusercontent.com"
+      - "+.googlevideo.com"
+
   enhanced-mode: fake-ip # 或 redir-host
   fake-ip-range: 198.18.0.1/16 # Fake IP 地址池 CIDR
-  # use-hosts: true # 查找 hosts 并返回 IP 记录
-
-  # search-domains: [local] # A/AAAA 记录的搜索域
 
   # 此列表中的主机名将不会使用 Fake IP 解析
   # 即, 对这些域名的请求将始终使用其真实 IP 地址进行响应
@@ -230,61 +288,6 @@ dns:
     - "+.stun.*.*"
     - "+.stun.*.*.*"
     - "+.stun.*.*.*.*"
-
-  # 支持 UDP、TCP、DoT、DoH. 您可以指定要连接的端口.
-  # 所有 DNS 查询都直接发送到名称服务器, 无需代理
-  # Clash 使用第一个收到的响应作为 DNS 查询的结果.
-  nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-
-  # 当 `fallback` 存在时, DNS 服务器将向此部分中的服务器
-  # 与 `nameservers` 中的服务器发送并发请求
-  # 当 GEOIP 国家不是 `CN` 时, 将使用 fallback 服务器的响应
-  # fallback:
-  #   - https://dns.google/dns-query
-
-  # 如果使用 `nameservers` 解析的 IP 地址在下面指定的子网中,
-  # 则认为它们无效, 并使用 `fallback` 服务器的结果.
-  #
-  # 当 `fallback-filter.geoip` 为 true 且 IP 地址的 GEOIP 为 `CN` 时,
-  # 将使用 `nameservers` 服务器解析的 IP 地址.
-  #
-  # 如果 `fallback-filter.geoip` 为 false, 且不匹配 `fallback-filter.ipcidr`,
-  # 则始终使用 `nameservers` 服务器的结果
-  #
-  # 这是对抗 DNS 污染攻击的一种措施.
-  fallback-filter:
-    geoip: false
-    ipcidr:
-      - 0.0.0.0/8
-      - 10.0.0.0/8
-      - 100.64.0.0/10
-      - 127.0.0.0/8
-      - 169.254.0.0/16
-      - 172.16.0.0/12
-      - 192.0.0.0/24
-      - 192.0.2.0/24
-      - 192.88.99.0/24
-      - 192.168.0.0/16
-      - 198.18.0.0/15
-      - 198.51.100.0/24
-      - 203.0.113.0/24
-      - 224.0.0.0/4
-      - 240.0.0.0/4
-      - 255.255.255.255/32
-    domain:
-      - "+.google.com"
-      - "+.facebook.com"
-      - "+.youtube.com"
-      - "+.githubusercontent.com"
-      - "+.googlevideo.com"
-
-  # 通过特定的名称服务器查找域名
-  nameserver-policy:
-    "+.local": system
-    "router.asus.com": system
-    "tplogin.cn": system
 
 proxies:
 
