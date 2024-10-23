@@ -356,6 +356,12 @@ proxy-groups:
       - DIRECT
       - Proxy
 
+  - name: Microsoft Tunnel
+    type: select
+    proxies:
+      - DIRECT
+      - Proxy
+
   - name: My Site
     type: select
     proxies:
@@ -505,6 +511,9 @@ rules:
 
   # BitTorrent Trackers
   - RULE-SET,anime-trackers,DIRECT
+  
+  # Microsoft Tunnel
+  - DOMAIN-SUFFIX,tunnels.api.visualstudio.com,Microsoft Tunnel
 
   # App
   - RULE-SET,youtube,Proxy
