@@ -1,0 +1,261 @@
+# HTTP(S) 代理服务端口
+# port: 7890
+
+# SOCKS5 代理服务端口
+# socks-port: 7891
+
+# Linux 和 macOS 的透明代理服务端口 (TCP 和 TProxy UDP 重定向)
+# redir-port: 7892
+
+# Linux 的透明代理服务端口 (TProxy TCP 和 TProxy UDP)
+# tproxy-port: 7893
+
+# HTTP(S) 和 SOCKS4(A)/SOCKS5 代理服务共用一个端口
+# mixed-port: 7890
+
+# 本地 SOCKS5/HTTP(S) 代理服务的认证
+# authentication:
+#  - "user1:pass1"
+#  - "user2:pass2"
+
+# 设置为 true 以允许来自其他 LAN IP 地址的连接
+# allow-lan: false
+
+# 仅当 `allow-lan` 为 `true` 时有效
+# '*': 绑定所有 IP 地址
+# 192.168.122.11: 绑定单个 IPv4 地址
+# "[aaaa::a8aa:ff:fe09:57d8]": 绑定单个 IPv6 地址
+# bind-address: "*"
+
+# Clash 路由工作模式
+# rule: 基于规则的数据包路由
+# global: 所有数据包将被转发到单个节点
+# direct: 直接将数据包转发到互联网
+mode: rule
+
+# 默认情况下, Clash 将日志打印到 STDOUT
+# 日志级别: info / warning / error / debug / silent
+log-level: silent
+
+# 当设置为 false 时, 解析器不会将主机名解析为 IPv6 地址
+ipv6: true
+
+# RESTful Web API 监听地址
+# external-controller: 127.0.0.1:9090
+
+# 配置目录的相对路径或静态 Web 资源目录的绝对路径.
+# Clash core 将在 `http://{{external-controller}}/ui` 中提供服务.
+# external-ui: folder
+
+# RESTful API 密钥 (可选)
+# 通过指定 HTTP 头 `Authorization: Bearer ${secret}` 进行身份验证
+# 如果RESTful API在 0.0.0.0 上监听, 务必设置一个 secret 密钥.
+# secret: ""
+
+# 出站接口名称
+# interface-name: en0
+
+# fwmark (仅在 Linux 上有效)
+# routing-mark: 6666
+
+# 用于DNS服务器和连接建立的静态主机 (如/etc/hosts) .
+#
+# 支持通配符主机名 (例如 *.clash.dev, *.foo.*.example.com)
+# 非通配符域名优先级高于通配符域名
+# 例如 foo.example.com > *.example.com > .example.com
+# P.S. +.foo.com 等于 .foo.com 和 foo.com
+hosts:
+  # '*.clash.dev': 127.0.0.1
+  # '.dev': 127.0.0.1
+  # 'alpha.clash.dev': '::1'
+
+# profile:
+# 将 `select` 手动选择 结果存储在 $HOME/.config/clash/.cache 中
+# 如果不需要此行为, 请设置为 false
+# 当两个不同的配置具有同名的组时, 将共享所选值
+# store-selected: true
+
+# 持久化 fakeip
+# store-fake-ip: false
+
+# DNS 服务设置
+# 此部分是可选的. 当不存在时, DNS 服务将被禁用.
+dns:
+  enable: false
+  listen: 0.0.0.0:53
+  ipv6: true # 当为 false 时, AAAA 查询的响应将为空
+  # use-hosts: true # 查找 hosts 并返回 IP 记录
+  # search-domains: [local] # A/AAAA 记录的搜索域
+
+  # DNS query follows proxy rules
+  # follow-rule: false
+
+  # 这些 名称服务器(nameservers) 用于解析下列 DNS 名称服务器主机名.
+  # 仅指定 IP 地址
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+
+  # 支持 UDP、TCP、DoT、DoH. 您可以指定要连接的端口.
+  # 所有 DNS 查询都直接发送到名称服务器, 无需代理
+  # Clash 使用第一个收到的响应作为 DNS 查询的结果.
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+
+  # 通过特定的名称服务器查找域名
+  nameserver-policy:
+    ".local": system
+    "router.asus.com": system
+    "tplogin.cn": system
+    "geosite:geolocation-!cn@cn": https://dns.alidns.com/dns-query
+    "geosite:geolocation-!cn": https://one.one.one.one/dns-query
+
+  # 当 `fallback` 存在时, DNS 服务器将向此部分中的服务器
+  # 与 `nameservers` 中的服务器发送并发请求
+  # 当 GEOIP 国家不是 `CN` 时, 将使用 fallback 服务器的响应
+  # fallback:
+  #   - https://dns.google/dns-query
+
+  # 如果使用 `nameservers` 解析的 IP 地址在下面指定的子网中,
+  # 则认为它们无效, 并使用 `fallback` 服务器的结果.
+  #
+  # 当 `fallback-filter.geoip` 为 true 且 IP 地址的 GEOIP 为 `CN` 时,
+  # 将使用 `nameservers` 服务器解析的 IP 地址.
+  #
+  # 如果 `fallback-filter.geoip` 为 false, 且不匹配 `fallback-filter.ipcidr`,
+  # 则始终使用 `nameservers` 服务器的结果
+  #
+  # 这是对抗 DNS 污染攻击的一种措施.
+  fallback-filter:
+    geoip: false
+    ipcidr:
+      - 0.0.0.0/8
+      - 10.0.0.0/8
+      - 100.64.0.0/10
+      - 127.0.0.0/8
+      - 169.254.0.0/16
+      - 172.16.0.0/12
+      - 192.0.0.0/24
+      - 192.0.2.0/24
+      - 192.88.99.0/24
+      - 192.168.0.0/16
+      - 198.18.0.0/15
+      - 198.51.100.0/24
+      - 203.0.113.0/24
+      - 224.0.0.0/4
+      - 240.0.0.0/4
+      - 255.255.255.255/32
+    domain:
+      - "+.google.com"
+      - "+.facebook.com"
+      - "+.youtube.com"
+      - "+.githubusercontent.com"
+      - "+.googlevideo.com"
+
+  enhanced-mode: fake-ip # 或 redir-host
+  fake-ip-range: 198.18.0.1/16 # Fake IP 地址池 CIDR
+
+  # 此列表中的主机名将不会使用 Fake IP 解析
+  # 即, 对这些域名的请求将始终使用其真实 IP 地址进行响应
+  fake-ip-filter:
+    - "geosite:connectivity-check"
+    - "geosite:private"
+    - "geosite:category-ntp"
+    - "+.ifplusor.win"
+
+proxies:
+
+proxy-providers:
+
+proxy-groups:
+  - name: PROXY
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Static.png
+    type: select
+    include-all: true
+
+  - name: My Site
+    type: select
+    proxies:
+      - DIRECT
+      - PROXY
+
+  - name: Microsoft Tunnel
+    type: select
+    proxies:
+      - DIRECT
+      - PROXY
+
+  - name: SpeedTest
+    type: select
+    proxies:
+      - DIRECT
+      - PROXY
+
+  - name: Ads
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+      - PROXY
+
+rule-providers:
+  direct:
+    behavior: domain
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/ifplusor/ctl-tower@main/clash/rule/direct.yaml"
+    interval: 3600
+    path: ./rule/direct.yaml
+  anime-trackers:
+    behavior: domain
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/Pioooooo/clash-rules-bt@main/anime_trackers.txt"
+    interval: 86400
+    path: ./rule/anime-trackers.yaml
+
+# 自定义规则
+# 您可以在此处插入您补充的自定义规则（请注意保持缩进）
+rules:
+  # Phase 1: no resolve
+  ##########################
+
+  # Direct
+  - RULE-SET,direct,DIRECT
+
+  # MySite
+  - DOMAIN-SUFFIX,ifplusor.win,My Site
+
+  # Microsoft Tunnel
+  - DOMAIN-SUFFIX,tunnels.api.visualstudio.com,Microsoft Tunnel
+
+  # 常见广告域名屏蔽
+  - GEOSITE,category-ads,Ads
+
+  # SpeedTest
+  - GEOSITE,category-speedtest,SpeedTest
+
+  # BitTorrent Trackers
+  - RULE-SET,anime-trackers,DIRECT,no-resolve
+
+  - GEOSITE,apple@cn,DIRECT
+
+  - GEOSITE,geolocation-!cn@cn,DIRECT
+  - GEOSITE,geolocation-!cn,PROXY
+  - GEOSITE,geolocation-cn@!cn,PROXY
+  - GEOSITE,geolocation-cn,DIRECT
+  - GEOSITE,tld-cn,DIRECT
+
+  # Phase 2: allow resolve
+  ##########################
+
+  # BitTorrent Trackers
+  - RULE-SET,anime-trackers,DIRECT
+
+  - GEOIP,PRIVATE,DIRECT
+
+  - GEOIP,CN,DIRECT
+
+  # Phase 3: final
+  ##########################
+
+  - MATCH,PROXY
