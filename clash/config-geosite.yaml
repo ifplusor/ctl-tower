@@ -239,6 +239,8 @@ rules:
 
   - GEOSITE,apple@cn,DIRECT
 
+  - DOMAIN-SUFFIX,gstatic.com,PROXY
+
   - GEOSITE,geolocation-!cn@cn,DIRECT
   - GEOSITE,geolocation-!cn,PROXY
   - GEOSITE,geolocation-cn@!cn,PROXY
