@@ -240,6 +240,7 @@ rules:
   - GEOSITE,apple@cn,DIRECT
 
   - DOMAIN-SUFFIX,gstatic.com,PROXY
+  - DOMAIN,fonts.googleapis.com,PROXY
 
   - GEOSITE,geolocation-!cn@cn,DIRECT
   - GEOSITE,geolocation-!cn,PROXY
