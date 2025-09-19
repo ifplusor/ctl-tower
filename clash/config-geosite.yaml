@@ -203,9 +203,21 @@ rule-providers:
   direct:
     behavior: domain
     type: http
-    url: "https://cdn.jsdelivr.net/gh/ifplusor/ctl-tower@main/clash/rule/direct.yaml"
+    url: "https://proxy.ifplusor.win/ctl-tower/clash/rule/direct.yaml"
     interval: 3600
     path: ./rule/direct.yaml
+  non-ads-cn:
+    behavior: domain
+    type: http
+    url: "https://proxy.ifplusor.win/ctl-tower/clash/rule/non-ads-cn.yaml"
+    interval: 3600
+    path: ./rule/non-ads-cn.yaml
+  non-ads:
+    behavior: domain
+    type: http
+    url: "https://proxy.ifplusor.win/ctl-tower/clash/rule/non-ads.yaml"
+    interval: 3600
+    path: ./rule/non-ads.yaml
   anime-trackers:
     behavior: domain
     type: http
@@ -228,10 +240,9 @@ rules:
   # Microsoft Tunnel
   - DOMAIN-SUFFIX,tunnels.api.visualstudio.com,Microsoft Tunnel
 
-  - DOMAIN-SUFFIX,googletagmanager.com,PROXY
-  - DOMAIN,analytics.google.com,PROXY
-
   # 常见广告域名屏蔽
+  - RULE-SET,non-ads-cn,DIRECT
+  - RULE-SET,non-ads,PROXY
   - GEOSITE,category-ads,Ads
 
   # SpeedTest

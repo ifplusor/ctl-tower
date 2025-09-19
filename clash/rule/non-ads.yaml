@@ -1,0 +1,3 @@
+payload:
+  - "*.googletagmanager.com"
+  - analytics.google.com
