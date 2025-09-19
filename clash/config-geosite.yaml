@@ -229,6 +229,7 @@ rules:
   - DOMAIN-SUFFIX,tunnels.api.visualstudio.com,Microsoft Tunnel
 
   - DOMAIN-SUFFIX,googletagmanager.com,PROXY
+  - DOMAIN,analytics.google.com,PROXY
 
   # 常见广告域名屏蔽
   - GEOSITE,category-ads,Ads
