@@ -206,6 +206,12 @@ rule-providers:
     url: "https://proxy.ifplusor.win/ctl-tower/clash/rule/direct.yaml"
     interval: 3600
     path: ./rule/direct.yaml
+  proxy:
+    behavior: domain
+    type: http
+    url: "https://proxy.ifplusor.win/ctl-tower/clash/rule/proxy.yaml"
+    interval: 3600
+    path: ./rule/proxy.yaml
   non-ads-cn:
     behavior: domain
     type: http
@@ -233,6 +239,9 @@ rules:
 
   # Direct
   - RULE-SET,direct,DIRECT
+
+  # PROXY
+  - RULE-SET,proxy,PROXY
 
   # MySite
   - DOMAIN-SUFFIX,ifplusor.win,My Site
