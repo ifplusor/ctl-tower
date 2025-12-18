@@ -237,6 +237,8 @@ rules:
   # Phase 1: no resolve
   ##########################
 
+  - DOMAIN,polyfill.io,REJECT
+
   # Direct
   - RULE-SET,direct,DIRECT
 
