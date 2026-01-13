@@ -180,6 +180,12 @@ proxy-groups:
       - DIRECT
       - PROXY
 
+  - name: Apple
+    type: select
+    proxies:
+      - DIRECT
+      - PROXY
+
   - name: Microsoft Tunnel
     type: select
     proxies:
@@ -224,6 +230,11 @@ rule-providers:
     url: "https://proxy.ifplusor.win/ctl-tower/clash/rule/non-ads.yaml"
     interval: 3600
     path: ./rule/non-ads.yaml
+  apple-cdn:
+    behavior: domain
+    type: http
+    url: "https://proxy.ifplusor.win/ctl-tower/clash/rule/apple/cdn.yaml"
+    interval: 86400
   anime-trackers:
     behavior: domain
     type: http
@@ -262,6 +273,7 @@ rules:
   # BitTorrent Trackers
   - RULE-SET,anime-trackers,DIRECT,no-resolve
 
+  - RULE-SET,apple-cdn,Apple
   - GEOSITE,apple@cn,DIRECT
 
   - DOMAIN-SUFFIX,gstatic.com,PROXY
