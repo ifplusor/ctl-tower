@@ -188,6 +188,13 @@ proxy-groups:
       - DIRECT
       - PROXY
 
+  - name: AI
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Star.png
+    type: select
+    include-all: true
+    proxies:
+      - DIRECT
+
   - name: Microsoft Tunnel
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bypass.png
     type: select
@@ -240,6 +247,11 @@ rule-providers:
     type: http
     url: "https://proxy.ifplusor.win/ctl-tower/clash/rule/apple/cdn.yaml"
     interval: 86400
+  github-copilot:
+    behavior: domain
+    type: http
+    url: "https://proxy.ifplusor.win/ctl-tower/clash/rule/ai/github-copilot.yaml"
+    interval: 86400
   anime-trackers:
     behavior: domain
     type: http
@@ -263,6 +275,9 @@ rules:
 
   # MySite
   - DOMAIN-SUFFIX,ifplusor.win,My Site
+
+  # AI
+  - RULE-SET,github-copilot,AI
 
   # Microsoft Tunnel
   - DOMAIN-SUFFIX,tunnels.api.visualstudio.com,Microsoft Tunnel
