@@ -170,35 +170,40 @@ proxy-providers:
 
 proxy-groups:
   - name: PROXY
-    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Static.png
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png
     type: select
     include-all: true
 
   - name: My Site
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Server.png
     type: select
     proxies:
       - DIRECT
       - PROXY
 
   - name: Apple
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png
     type: select
     proxies:
       - DIRECT
       - PROXY
 
   - name: Microsoft Tunnel
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bypass.png
     type: select
     proxies:
       - DIRECT
       - PROXY
 
   - name: SpeedTest
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Speedtest.png
     type: select
     proxies:
       - DIRECT
       - PROXY
 
   - name: Ads
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Advertising.png
     type: select
     proxies:
       - REJECT
