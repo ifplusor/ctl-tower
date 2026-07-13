@@ -1,4 +1,10 @@
 payload:
+- ec2-35-86-115-47.us-west-2.compute.amazonaws.com 
+- home.ifplusor.win
+- proxy.ifplusor.win
+- ss.ifplusor.win
+- ss3.ifplusor.win
+- mail.ifplusor.win
 - cdn.jsdelivr.net
 - .eo.dnse1.com
 - .wanyiwan.top
