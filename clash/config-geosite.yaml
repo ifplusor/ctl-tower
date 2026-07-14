@@ -105,11 +105,11 @@ dns:
 
   # 通过特定的名称服务器查找域名
   nameserver-policy:
+    "geosite:geolocation-!cn@cn": https://dns.alidns.com/dns-query
+    "geosite:geolocation-!cn": https://one.one.one.one/dns-query
     ".local": system
     "router.asus.com": system
     "tplogin.cn": system
-    "geosite:geolocation-!cn@cn": https://dns.alidns.com/dns-query
-    "geosite:geolocation-!cn": https://one.one.one.one/dns-query
 
   # 当 `fallback` 存在时, DNS 服务器将向此部分中的服务器
   # 与 `nameservers` 中的服务器发送并发请求
@@ -188,6 +188,13 @@ proxy-groups:
       - DIRECT
       - PROXY
 
+  - name: Chaos CDN
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloud.png
+    type: select
+    proxies:
+      - DIRECT
+      - PROXY
+
   - name: AI
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Star.png
     type: select
@@ -259,6 +266,11 @@ rule-providers:
     type: http
     url: "https://proxy.ifplusor.win/ctl-tower/clash/rule/apple/cdn.yaml"
     interval: 86400
+  chaos-cdn:
+    behavior: domain
+    type: http
+    url: "https://proxy.ifplusor.win/ctl-tower/clash/rule/chaos-cdn.yaml"
+    interval: 86400
   github-copilot:
     behavior: domain
     type: http
@@ -307,6 +319,8 @@ rules:
 
   - RULE-SET,apple-cdn,Apple
   - GEOSITE,apple@cn,DIRECT
+
+  - RULE-SET,chaos-cdn,Chaos CDN
 
   - DOMAIN-SUFFIX,gstatic.com,PROXY
   - DOMAIN,fonts.googleapis.com,PROXY

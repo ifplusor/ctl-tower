@@ -1,0 +1,7 @@
+payload:
+- cdn.jsdelivr.net
+- fastly.jsdelivr.net
+- gcore.jsdelivr.net
+- testingcf.jsdelivr.net
+- quantil.jsdelivr.net
+- unpkg.com
