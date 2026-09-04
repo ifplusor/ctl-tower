@@ -293,6 +293,7 @@ rules:
 
   # Direct
   - RULE-SET,direct,DIRECT
+  - GEOSITE,private,DIRECT
 
   # PROXY
   - RULE-SET,proxy,PROXY
