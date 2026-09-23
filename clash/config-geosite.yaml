@@ -105,6 +105,8 @@ dns:
 
   # 通过特定的名称服务器查找域名
   nameserver-policy:
+    "prac.ifplusor.win": system
+    "*.prac-code-resource.ifplusor.win": system
     "geosite:geolocation-!cn@cn": https://dns.alidns.com/dns-query
     "geosite:geolocation-!cn": https://one.one.one.one/dns-query
     ".local": system
@@ -271,6 +273,11 @@ rule-providers:
     type: http
     url: "https://proxy.ifplusor.win/ctl-tower/clash/rule/chaos-cdn.yaml"
     interval: 86400
+  anthropic:
+    behavior: domain
+    type: http
+    url: "https://proxy.ifplusor.win/ctl-tower/clash/rule/ai/anthropic.yaml"
+    interval: 86400
   github-copilot:
     behavior: domain
     type: http
@@ -302,6 +309,7 @@ rules:
   - RULE-SET,my-site,My Site
 
   # AI
+  - RULE-SET,anthropic,AI
   - RULE-SET,github-copilot,AI
 
   # Microsoft Tunnel
