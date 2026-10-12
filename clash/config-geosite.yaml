@@ -161,10 +161,11 @@ dns:
   # 此列表中的主机名将不会使用 Fake IP 解析
   # 即, 对这些域名的请求将始终使用其真实 IP 地址进行响应
   fake-ip-filter:
+    - "+.ifplusor.win"
+    - "+.compute.amazonaws.com"
     - "geosite:connectivity-check"
     - "geosite:private"
     - "geosite:category-ntp"
-    - "+.ifplusor.win"
 
 proxies:
 
