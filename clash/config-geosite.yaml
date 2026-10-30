@@ -107,7 +107,9 @@ dns:
   nameserver-policy:
     "prac.ifplusor.win": system
     "*.prac-code-resource.ifplusor.win": system
-    "geosite:geolocation-!cn@cn": https://dns.alidns.com/dns-query
+    "geosite:geolocation-!cn@cn":
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
     "geosite:geolocation-!cn": https://one.one.one.one/dns-query
     ".local": system
     "router.asus.com": system
@@ -129,31 +131,31 @@ dns:
   # 则始终使用 `nameservers` 服务器的结果
   #
   # 这是对抗 DNS 污染攻击的一种措施.
-  fallback-filter:
-    geoip: false
-    ipcidr:
-      - 0.0.0.0/8
-      - 10.0.0.0/8
-      - 100.64.0.0/10
-      - 127.0.0.0/8
-      - 169.254.0.0/16
-      - 172.16.0.0/12
-      - 192.0.0.0/24
-      - 192.0.2.0/24
-      - 192.88.99.0/24
-      - 192.168.0.0/16
-      - 198.18.0.0/15
-      - 198.51.100.0/24
-      - 203.0.113.0/24
-      - 224.0.0.0/4
-      - 240.0.0.0/4
-      - 255.255.255.255/32
-    domain:
-      - "+.google.com"
-      - "+.facebook.com"
-      - "+.youtube.com"
-      - "+.githubusercontent.com"
-      - "+.googlevideo.com"
+  # fallback-filter:
+  #   geoip: false
+  #   ipcidr:
+  #     - 0.0.0.0/8
+  #     - 10.0.0.0/8
+  #     - 100.64.0.0/10
+  #     - 127.0.0.0/8
+  #     - 169.254.0.0/16
+  #     - 172.16.0.0/12
+  #     - 192.0.0.0/24
+  #     - 192.0.2.0/24
+  #     - 192.88.99.0/24
+  #     - 192.168.0.0/16
+  #     - 198.18.0.0/15
+  #     - 198.51.100.0/24
+  #     - 203.0.113.0/24
+  #     - 224.0.0.0/4
+  #     - 240.0.0.0/4
+  #     - 255.255.255.255/32
+  #   domain:
+  #     - "+.google.com"
+  #     - "+.facebook.com"
+  #     - "+.youtube.com"
+  #     - "+.githubusercontent.com"
+  #     - "+.googlevideo.com"
 
   enhanced-mode: fake-ip # 或 redir-host
   fake-ip-range: 198.18.0.1/16 # Fake IP 地址池 CIDR
